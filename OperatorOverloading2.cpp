@@ -10,12 +10,18 @@ struct YouTubeChannel{
         name = c_n;
         subscribers = count;
     }
+    bool operator==(const YouTubeChannel channel)const{
+        return this->name == channel.name;
+    }
 };
 
 struct MyCollection{
     list<YouTubeChannel>mylist;
     void operator+= (YouTubeChannel& channel){
         this->mylist.push_back(channel);
+    }
+    void operator-= (YouTubeChannel& channel){
+        this->mylist.remove(channel);
     }
 };
 
@@ -37,6 +43,7 @@ int main(){
     MyCollection mc;
     mc+=yt1;
     mc+=yt2;
+    mc-=yt1;
     cout << mc;
     return 0;
 }

@@ -12,9 +12,12 @@ class Car{
         Car(int rnum){
             reg_no = rnum;
         }
+        //Copy Constructor, if not found, compiler will provide its own copy constructor
         Car(Car& obj){
+            cout<<"User's Copy Constructor is called";
             reg_no = obj.reg_no;
         }
+        // even if we comment out our copy constructor, compiler will not throw any error 
     void display(){
         cout<<reg_no<<endl;
     }

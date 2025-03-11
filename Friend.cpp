@@ -5,7 +5,7 @@ using namespace std;
 
 class ABC{
     private: int p;
-    public: void show(ABC obj){
+    friend void show(ABC obj){
         cout<<obj.p<<endl;
     }
     public: ABC(int v){
@@ -14,7 +14,7 @@ class ABC{
 };
 int main() {
     ABC o(10);
-    o.show(o);
+    show(o);
 
     return 0;
 }

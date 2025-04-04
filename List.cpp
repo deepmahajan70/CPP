@@ -1,93 +1,37 @@
 #include <iostream>
-
-class Node {
-public:
-    int data;
-    Node* next;
-};
-
-class LinkedList {
-private:
-    Node* head;
-
-public:
-    LinkedList() {
-        head = nullptr;
-    }
-
-    // Insertion at the beginning
-    void insert(int value) {
-        Node* newNode = new Node;
-        newNode->data = value;
-        newNode->next = head;
-        head = newNode;
-    }
-
-    // Deletion of a specific value
-    void remove(int value) {
-        Node* temp = head;
-        Node* prev = nullptr;
-
-        while (temp != nullptr && temp->data != value) {
-            prev = temp;
-            temp = temp->next;
-        }
-
-        if (temp == nullptr) {
-            std::cout << "Value not found in the list." << std::endl;
-            return;
-        }
-
-        if (prev == nullptr) {
-            head = temp->next;
-        } else {
-            prev->next = temp->next;
-        }
-
-        delete temp;
-    }
-
-    // Search for a value
-    bool search(int value) {
-        Node* temp = head;
-        while (temp != nullptr) {
-            if (temp->data == value) {
-                return true;
-            }
-            temp = temp->next;
-        }
-        return false;
-    }
-
-    // Traverse and display the list
-    void traverse() {
-        Node* temp = head;
-        std::cout << "List elements: ";
-        while (temp != nullptr) {
-            std::cout << temp->data << " ";
-            temp = temp->next;
-        }
-        std::cout << std::endl;
-    }
-};
+#include <list>
+using namespace std;
 
 int main() {
-    LinkedList myList;
+    list<int> myList = {10, 20, 30, 40};
 
-    myList.insert(10);
-    myList.insert(20);
-    myList.insert(30);
+    myList.push_back(50);  // Add at the end
+    myList.push_front(5);   // Add at the front
 
-    myList.traverse();
+    cout << "List elements: ";
+    for (int x : myList)
+        cout << x << " ";
+    cout << endl;
 
-    if (myList.search(20)) {
-        std::cout << "Value 20 found in the list." << std::endl;
-    } else {
-        std::cout << "Value 20 not found in the list." << std::endl;
-    }
+    myList.pop_back();  // Remove last element
+    myList.pop_front(); // Remove first element
 
-    myList.remove(20);
-    myList.traverse();
+    cout << "After pop operations: ";
+    for (int x : myList)
+        cout << x << " ";
+    cout << endl;
+
+    myList.reverse();  // Reverse the list
+    cout << "Reversed List: ";
+    for (int x : myList)
+        cout << x << " ";
+    cout << endl;
+
+    myList.sort();  // Sort the list
+    cout << "Sorted List: ";
+    for (int x : myList)
+        cout << x << " ";
+    cout << endl;
 
     return 0;
 }
